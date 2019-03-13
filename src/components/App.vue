@@ -6,7 +6,7 @@
 export default {
   data() {
     return {
-      message: '<span>Hello Vue</span>',
+      message: 'Hello Vue',
     }
   }
 }
