@@ -1,7 +1,24 @@
 <template>
   <div>
-    <h1>{{message}}</h1>
-    <child-component></child-component>
+    <h1
+      v-html="message"
+      :class="classObject"
+    ></h1>
+    <child-component
+      v-show="isShow"
+    ></child-component>
+    <p v-if="id === 1">1</p>
+    <template v-else-if="id === 2">
+      <p>2-1</p>
+      <p>2-2</p>
+      <p>2-3</p>
+    </template>
+    <p v-else>Other</p>
+    <template v-for="item in items">
+      <child-component :key="item.id"></child-component>
+    </template>
+    <button @click="count++">Add to count</button>
+    <p>{{ count }}回クリックされました</p>
   </div>
 </template>
 
@@ -12,6 +29,26 @@ export default {
   data() {
     return {
       message: '<span>Hello Vue</span>',
+      isShow: true,
+      id: 2,
+      count: 0,
+      classObject: {
+        'is-green': true,
+      },
+      items: [
+        {
+          id: 1,
+          title: '1番目のリスト',
+        },
+        {
+          id: 2,
+          title: '２番目のリスト'
+        },
+        {
+          id: 3,
+          title: '3番目のリスト'
+        }
+      ],
     }
   },
   components: {
@@ -21,7 +58,7 @@ export default {
 </script>
 
 <style scoped>
-  h1 {
+  .is-green {
     color: green;
   }
 </style>
