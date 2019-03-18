@@ -6,7 +6,18 @@
     ></h1>
     <child-component
       v-show="isShow"
-    ></child-component>
+    >
+      <template #head>
+        <p>head slot</p>
+      </template>
+      <template #default>
+        <p>main slot</p>
+        <p>main slot2</p>
+      </template>
+      <template #foot>
+        <p>foot slot</p>
+      </template>
+    </child-component>
     <p v-if="id === 1">1</p>
     <template v-else-if="id === 2">
       <p>2-1</p>
@@ -15,7 +26,9 @@
     </template>
     <p v-else>Other</p>
     <template v-for="item in items">
-      <child-component :key="item.id"></child-component>
+      <child-component :key="item.id">
+        <span>slot content</span>
+      </child-component>
     </template>
     <button @click="count++">Add to count</button>
     <p>{{ count }}回クリックされました</p>
