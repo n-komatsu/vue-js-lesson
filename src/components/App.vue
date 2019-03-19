@@ -30,7 +30,7 @@
         <span>slot content</span>
       </child-component>
     </template>
-    <button @click="count++">Add to count</button>
+    <button @click="incrementCount">Add to count</button>
     <p>{{ count }}回クリックされました</p>
   </div>
 </template>
@@ -62,6 +62,11 @@ export default {
           title: '3番目のリスト'
         }
       ],
+    }
+  },
+  methods: {
+    incrementCount(){
+      this.count++;
     }
   },
   components: {
