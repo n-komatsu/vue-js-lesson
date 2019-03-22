@@ -26,7 +26,10 @@
     </template>
     <p v-else>Other</p>
     <template v-for="item in items">
-      <child-component :key="item.id">
+      <child-component 
+        :key="item.id"
+        :title="item.title"
+      >
         <span>slot content</span>
       </child-component>
     </template>
