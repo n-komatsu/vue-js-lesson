@@ -36,6 +36,7 @@
     <hr>
     <button @click="incrementCount">Add to count</button>
     <p>{{ count }}回クリックされました</p>
+    <hr>
     <input type="text" v-model="inputText">
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
