@@ -1,5 +1,8 @@
 <template>
-  <h1>{{message}}</h1>
+  <div>
+    <h1>{{message}}</h1>
+    <hr>
+  </div>
 </template>
 
 <script>
@@ -15,5 +18,8 @@ export default {
 <style scoped>
   h1 {
     color: green;
+  }
+  hr {
+    margin: 16px 0;
   }
 </style>
