@@ -4,6 +4,14 @@
       v-html="message"
       :class="classObject"
     ></h1>
+    <p>{{ description }}</p>
+    <button @click="changeTextSize">large</button>
+    <button
+      @click="addDescription"
+    >
+      add description
+    </button>
+    <hr>
     <child-component
       v-show="isShow"
     >
@@ -18,6 +26,7 @@
         <p>foot slot</p>
       </template>
     </child-component>
+    <hr>
     <p v-if="id === 1">1</p>
     <template v-else-if="id === 2">
       <p>2-1</p>
@@ -25,6 +34,7 @@
       <p>2-3</p>
     </template>
     <p v-else>Other</p>
+    <hr>
     <template v-for="item in items">
       <child-component 
         :key="item.id"
@@ -33,11 +43,14 @@
         <span>slot content</span>
       </child-component>
     </template>
+    <hr>
     <button @click="incrementCount">Add to count</button>
     <p>{{ count }}回クリックされました</p>
+    <hr>
     <input type="text" v-model="inputText">
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
+    <hr>
   </div>
 </template>
 
@@ -48,6 +61,7 @@ export default {
   data() {
     return {
       message: '<span>Hello Vue</span>',
+      description: '',
       isShow: true,
       id: 2,
       count: 0,
@@ -62,11 +76,11 @@ export default {
         },
         {
           id: 2,
-          title: '２番目のリスト'
+          title: '２番目のリスト',
         },
         {
           id: 3,
-          title: '3番目のリスト'
+          title: '3番目のリスト',
         }
       ],
     }
@@ -79,6 +93,14 @@ export default {
       const upperCaseText = this.inputText.toUpperCase();
       console.log(`method: ${upperCaseText}`);
       return upperCaseText;
+    },
+    addDescription() {
+      this.description = 'Vue-lesson';
+      console.log(this);
+      console.log(this.description);
+    },
+    changeTextSize() {
+      this.classObject = {...this.classObject, 'is-large': true};
     }
   },
   computed: {
@@ -97,5 +119,11 @@ export default {
 <style scoped>
   .is-green {
     color: green;
+  }
+  .is-large {
+    font-size: 48px;
+  }
+  hr {
+    margin: 16px 0;
   }
 </style>
