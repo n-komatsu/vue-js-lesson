@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{message}}</h1>
+    <hr>
     <child-component></child-component>
   </div>
 </template>
@@ -23,5 +24,8 @@ export default {
 <style scoped>
   h1 {
     color: green;
+  }
+  hr {
+    margin: 16px 0;
   }
 </style>
