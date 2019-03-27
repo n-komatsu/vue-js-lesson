@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1
-      v-html="message"
+      v-html="leads.message"
       :class="classObject"
     ></h1>
-    <p>{{ description }}</p>
+    <p>{{ leads.description }}</p>
     <button @click="changeTextSize">large</button>
     <button
       @click="addDescription"
@@ -60,8 +60,10 @@ import ChildComponent from 'Components/ChildComponent';
 export default {
   data() {
     return {
-      message: '<span>Hello Vue</span>',
-      description: '',
+      leads: {
+        message: '<span>Hello Vue</span>',
+        description: '',
+      },
       isShow: true,
       id: 2,
       count: 0,
@@ -91,13 +93,13 @@ export default {
     },
     showUpperCaseText(){
       const upperCaseText = this.inputText.toUpperCase();
-      console.log(`method: ${upperCaseText}`);
+      // console.log(`method: ${upperCaseText}`);
       return upperCaseText;
     },
     addDescription() {
-      this.description = 'Vue-lesson';
-      console.log(this);
-      console.log(this.description);
+      this.leads.description = 'Vue-lesson';
+      // console.log(this);
+      // console.log(this.leads.description);
     },
     changeTextSize() {
       this.classObject = {...this.classObject, 'is-large': true};
@@ -106,8 +108,20 @@ export default {
   computed: {
     getUpperCaseText(){ 
       const upperCaseText = this.inputText.toUpperCase();
-      console.log(`computed: ${upperCaseText}`);
+      // console.log(`computed: ${upperCaseText}`);
       return upperCaseText;
+    }
+  },
+  watch: {
+    inputText(value, oldValue) {
+      console.log(`value -> ${value}`);
+      console.log(`oldValue -> ${oldValue}`);
+    },
+    'leads.description': {
+      handler(){
+        console.log('add description');
+      },
+      deep: true,
     }
   },
   components: {
