@@ -51,6 +51,46 @@
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
     <hr>
+    <form>
+      <div>
+        <span>名前:</span>
+        <input type="text"
+          :value="form.name"
+          @input="form.name = $event.target.value"
+        >
+        <p>名前: {{ getInputName }}</p>
+      </div>
+      <div>
+        <span>性別:</span>
+        <label>
+          男性
+          <input type="radio" value="male" v-model="form.sex">
+        </label>
+        <label>
+          女性
+          <input type="radio" value="female" v-model="form.sex">
+        </label>
+        <p>性別: {{ getRadioValue }}</p>
+      </div>
+      <div>
+        <select v-model="form.selected">
+          <option disabled value="">--出身地を選択してください--</option>
+          <option v-for="option in form.options"
+            :value="option.value"
+          >
+            {{ option.value }}
+          </option>
+        </select>
+        <p>出身地:{{ getSelectValue }}</p>
+      </div>
+      <div>
+        <label>
+          <input type="checkbox" v-model="form.checked">
+          20際以上です
+        </label>
+        <p>bool: {{ getCheckBoxValue }}</p>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -85,6 +125,26 @@ export default {
           title: '3番目のリスト',
         }
       ],
+      form: {
+        name: '',
+        sex: '',
+        selected: '',
+        options: [
+          {
+            value: '東京都',
+          },
+          {
+            value: '埼玉県',
+          },
+          {
+            value: '神奈川県',
+          },
+          {
+            value: '千葉県',
+          },
+        ],
+        checked: false,
+      },
     }
   },
   methods: {
@@ -110,6 +170,18 @@ export default {
       const upperCaseText = this.inputText.toUpperCase();
       // console.log(`computed: ${upperCaseText}`);
       return upperCaseText;
+    },
+    getInputName() {
+      return this.form.name;
+    },
+    getRadioValue() {
+      return this.form.sex;
+    },
+    getSelectValue() {
+      return this.form.selected;
+    },
+    getCheckBoxValue() {
+      return this.form.checked;
     }
   },
   watch: {
