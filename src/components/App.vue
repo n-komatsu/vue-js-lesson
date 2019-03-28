@@ -51,6 +51,11 @@
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
     <hr>
+    <template v-for="text in texts">
+      <p>{{ text }}</p>
+    </template>
+    <button @click="updateText">update text</button>
+    <hr>
   </div>
 </template>
 
@@ -83,6 +88,7 @@ export default {
           title: '3番目のリスト',
         }
       ],
+      texts: ['javascript', 'jQuery'],
     }
   },
   methods: {
@@ -98,6 +104,9 @@ export default {
       this.description = 'Vue-lesson';
       console.log(this);
       console.log(this.description);
+    },
+    updateText() {
+      this.$set(this.texts, 1, 'Vue.js');
     },
     changeTextSize() {
       this.classObject = {...this.classObject, 'is-large': true};
