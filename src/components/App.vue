@@ -51,6 +51,11 @@
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
     <hr>
+    <template v-for="text in texts">
+      <p>{{ text }}</p>
+    </template>
+    <button @click="updateText">update text</button>
+    <hr>
     <form>
       <div>
         <span>名前:</span>
@@ -91,6 +96,7 @@
         <p>bool: {{ getCheckBoxValue }}</p>
       </div>
     </form>
+    <hr>
   </div>
 </template>
 
@@ -125,6 +131,7 @@ export default {
           title: '3番目のリスト',
         }
       ],
+      texts: ['javascript', 'jQuery'],
       form: {
         name: '',
         sex: '',
@@ -160,6 +167,9 @@ export default {
       this.leads.description = 'Vue-lesson';
       // console.log(this);
       // console.log(this.leads.description);
+    },
+    updateText() {
+      this.$set(this.texts, 1, 'Vue.js');
     },
     changeTextSize() {
       this.classObject = {...this.classObject, 'is-large': true};
