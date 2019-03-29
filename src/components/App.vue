@@ -44,8 +44,10 @@
       </child-component>
     </template>
     <hr>
-    <button @click="incrementCount">Add to count</button>
-    <p>{{ count }}回クリックされました</p>
+    <counter
+      :count="count"
+      @incremant="incrementCount"
+    ></counter>
     <hr>
     <input type="text" v-model="inputText">
     <p>computed: {{ getUpperCaseText }}</p>
@@ -59,10 +61,7 @@
     <form>
       <div>
         <span>名前:</span>
-        <input type="text"
-          :value="form.name"
-          @input="form.name = $event.target.value"
-        >
+        <input-text v-model="form.name"></input-text>
         <p>名前: {{ getInputName }}</p>
       </div>
       <div>
@@ -102,6 +101,8 @@
 
 <script>
 import ChildComponent from 'Components/ChildComponent';
+import Counter from 'Components/Counter';
+import InputText from 'Components/InputText';
 
 export default {
   data() {
@@ -208,6 +209,8 @@ export default {
   },
   components: {
     ChildComponent,
+    Counter,
+    InputText,
   }
 }
 </script>
