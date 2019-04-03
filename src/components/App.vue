@@ -13,7 +13,7 @@
     </button>
     <hr>
     <child-component
-      v-show="isShow"
+      v-if="isShow"
     >
       <template #head>
         <p>head slot</p>
@@ -26,6 +26,7 @@
         <p>foot slot</p>
       </template>
     </child-component>
+    <button @click="toggleShow">toggle isShow</button>
     <hr>
     <p v-if="id === 1">1</p>
     <template v-else-if="id === 2">
@@ -96,6 +97,10 @@
       </div>
     </form>
     <hr>
+    <article v-for="post in posts">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.body }}</p>
+    </article>
   </div>
 </template>
 
@@ -103,8 +108,35 @@
 import ChildComponent from 'Components/ChildComponent';
 import Counter from 'Components/Counter';
 import InputText from 'Components/InputText';
+import axios from 'axios';
 
 export default {
+  beforeCreate() {
+    console.log('beforecreate');
+    console.log(this.leads);
+  },
+  created() {
+    console.log('created');
+    console.log(this.posts);
+    axios.get('/data.json').then(res => {
+      this.posts = res.data.posts;
+    });
+  },
+  beforeMount() {
+    console.log("beforemount");
+    console.log(this.$el);
+  },
+  mounted() {
+    console.log('mounted');
+    console.log(this.$el);
+    console.log(this);
+  },
+  beforeUpdate() {
+    console.log('beforeupdate');
+  },
+  updated() {
+    console.log('updated');
+  },
   data() {
     return {
       leads: {
@@ -153,6 +185,7 @@ export default {
         ],
         checked: false,
       },
+      posts: [],
     }
   },
   methods: {
@@ -174,6 +207,9 @@ export default {
     },
     changeTextSize() {
       this.classObject = {...this.classObject, 'is-large': true};
+    },
+    toggleShow() {
+      this.isShow = !this.isShow;
     }
   },
   computed: {
