@@ -45,10 +45,7 @@
       </child-component>
     </template>
     <hr>
-    <counter
-      :count="count"
-      @incremant="incrementCount"
-    ></counter>
+    <counter></counter>
     <hr>
     <input type="text" v-model="inputText">
     <p>computed: {{ getUpperCaseText }}</p>
@@ -145,7 +142,6 @@ export default {
       },
       isShow: true,
       id: 2,
-      count: 0,
       inputText: '',
       classObject: {
         'is-green': true,
