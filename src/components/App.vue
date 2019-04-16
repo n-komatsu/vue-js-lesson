@@ -51,8 +51,10 @@
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
     <hr>
-    <template v-for="text in texts">
-      <p>{{ text }}</p>
+    <template v-for="(category,index) in categories">
+      <p :key="index+4">
+        {{ category }}
+      </p>
     </template>
     <button @click="updateText">update text</button>
     <hr>
@@ -88,7 +90,7 @@ export default {
           title: '3番目のリスト',
         }
       ],
-      texts: ['javascript', 'jQuery'],
+      categories: ['Javascript', 'jQuery'],
     }
   },
   methods: {
@@ -106,7 +108,7 @@ export default {
       console.log(this.description);
     },
     updateText() {
-      this.$set(this.texts, 1, 'Vue.js');
+      this.$set(this.categories, 1, 'Vue.js');
     },
     changeTextSize() {
       this.classObject = {...this.classObject, 'is-large': true};
