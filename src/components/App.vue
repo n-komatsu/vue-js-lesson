@@ -51,8 +51,8 @@
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
     <hr>
-    <template v-for="(category,index) in categories">
-      <p :key="index+4">
+    <template v-for="category in categories">
+      <p :key="$uuid.v4()">
         {{ category }}
       </p>
     </template>
