@@ -100,7 +100,9 @@
       </div>
     </form>
     <hr>
-    <article v-for="post in posts">
+    <article v-for="post in posts"
+      :key="$uuid.v4()"
+    >
       <h2>{{ post.title }}</h2>
       <p>{{ post.body }}</p>
     </article>
