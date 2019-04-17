@@ -51,8 +51,10 @@
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
     <hr>
-    <template v-for="text in texts">
-      <p>{{ text }}</p>
+    <template v-for="category in categories">
+      <p :key="$uuid.v4()">
+        {{ category }}
+      </p>
     </template>
     <button @click="updateText">update text</button>
     <hr>
@@ -79,6 +81,7 @@
           <option disabled value="">--出身地を選択してください--</option>
           <option v-for="option in form.options"
             :value="option.value"
+            :key="option.id"
           >
             {{ option.value }}
           </option>
@@ -94,7 +97,9 @@
       </div>
     </form>
     <hr>
-    <article v-for="post in posts">
+    <article v-for="post in posts"
+      :key="$uuid.v4()"
+    >
       <h2>{{ post.title }}</h2>
       <p>{{ post.body }}</p>
     </article>
@@ -160,22 +165,26 @@ export default {
           title: '3番目のリスト'
         }
       ],
-      texts: ['javascript', 'jQuery'],
+      categories: ['Javascript', 'jQuery'],
       form: {
         name: '',
         sex: '',
         selected: '',
         options: [
           {
+            id: this.$uuid.v4(),
             value: '東京都',
           },
           {
+            id: this.$uuid.v4(),
             value: '埼玉県',
           },
           {
+            id: this.$uuid.v4(),
             value: '神奈川県',
           },
           {
+            id: this.$uuid.v4(),
             value: '千葉県',
           },
         ],
@@ -199,7 +208,7 @@ export default {
       // console.log(this.leads.description);
     },
     updateText() {
-      this.$set(this.texts, 1, 'Vue.js');
+      this.$set(this.categories, 1, 'Vue.js');
     },
     changeTextSize() {
       this.classObject = {...this.classObject, 'is-large': true};
