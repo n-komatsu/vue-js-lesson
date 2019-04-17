@@ -51,8 +51,10 @@
     <p>computed: {{ getUpperCaseText }}</p>
     <p>methods: {{ showUpperCaseText() }}</p>
     <hr>
-    <template v-for="text in texts">
-      <p>{{ text }}</p>
+    <template v-for="category in categories">
+      <p :key="$uuid.v4()">
+        {{ category }}
+      </p>
     </template>
     <button @click="updateText">update text</button>
     <hr>
@@ -78,19 +80,19 @@ export default {
       },
       items: [
         {
-          id: 1,
+          id: this.$uuid.v4(),
           title: '1番目のリスト',
         },
         {
-          id: 2,
-          title: '２番目のリスト',
+          id: this.$uuid.v4(),
+          title: '２番目のリスト'
         },
         {
-          id: 3,
-          title: '3番目のリスト',
+          id: this.$uuid.v4(),
+          title: '3番目のリスト'
         }
       ],
-      texts: ['javascript', 'jQuery'],
+      categories: ['Javascript', 'jQuery'],
     }
   },
   methods: {
@@ -108,7 +110,7 @@ export default {
       // console.log(this.leads.description);
     },
     updateText() {
-      this.$set(this.texts, 1, 'Vue.js');
+      this.$set(this.categories, 1, 'Vue.js');
     },
     changeTextSize() {
       this.classObject = {...this.classObject, 'is-large': true};
