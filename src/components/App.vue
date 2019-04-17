@@ -148,16 +148,16 @@ export default {
       },
       items: [
         {
-          id: 1,
+          id: this.$uuid.v4(),
           title: '1番目のリスト',
         },
         {
-          id: 2,
-          title: '２番目のリスト',
+          id: this.$uuid.v4(),
+          title: '２番目のリスト'
         },
         {
-          id: 3,
-          title: '3番目のリスト',
+          id: this.$uuid.v4(),
+          title: '3番目のリスト'
         }
       ],
       texts: ['javascript', 'jQuery'],
